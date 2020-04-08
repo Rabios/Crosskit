@@ -44,8 +44,8 @@ And If You Changed the Mode In mode Parameter To Any Of The 4 Modes Then It Will
 3. Everyone Used Crosskit,And Everyone Contributed To It,And Supported It's Development
 
 ## More
-1. [Getting Started With Crosskit](https://github.com/Rabios/crosskit/blob/master/getting_started.md)
-2. [API Functions Reference](https://github.com/Rabios/crosskit/blob/master/crosskit_api.md)
+1. [Getting Started With Crosskit](https://github.com/Rabios/Crosskit/blob/master/getting_started.md)
+2. [API Functions Reference](https://github.com/Rabios/Crosskit/blob/master/crosskit_api.md)
 
 ## TODO
 - [ ] Add A Way For Filling Circles In WebGL,Cause Are Drawn With Stroke,Nothing Else		

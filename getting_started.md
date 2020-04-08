@@ -7,10 +7,10 @@ There Are 2 Ways
 In HTML,Add This To Your HTML File Code
 ```html
 <!-- Unminimifed -->
-<script src="https://cdn.jsdelivr.net/gh/Rabios/crosskit@master/build/crosskit.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Rabios/Crosskit@master/build/crosskit.js"></script>
 
 <!-- Minimifed -->
-<script src="https://cdn.jsdelivr.net/gh/Rabios/crosskit@master/build/crosskit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/Rabios/Crosskit@master/build/crosskit.min.js"></script>
 ```
 
 ### Initializing Crosskit
@@ -118,7 +118,7 @@ Create HTML File Named `index.html` Beside `crosskit.js` Or `crosskit.min.js`,Or
         <title>Crosskit Example</title>    
     </head>
     <body></body>
-    <script src="https://cdn.jsdelivr.net/gh/Rabios/crosskit@master/build/crosskit.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/Rabios/Crosskit@master/build/crosskit.js"></script>
     <script>
         crosskit.init({
             w: crosskit.compatible_width,
@@ -140,4 +140,4 @@ Create HTML File Named `index.html` Beside `crosskit.js` Or `crosskit.min.js`,Or
 </html>
 ```
 ## For More 
-1. [API Functions Reference](https://github.com/Rabios/crosskit/blob/master/crosskit_api.md)
+1. [API Functions Reference](https://github.com/Rabios/Crosskit/blob/master/crosskit_api.md)
