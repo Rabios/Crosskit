@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Crosskit DOM Full Test</title>
+        <title>Crosskit Canvas Full Test</title>
     </head>
     <body></body>
     <script src="../build/crosskit.js"></script>
     <script>
         crosskit.init({
-            renderer: DOM,
-            w: crosskit.compatible_width,
-            h: crosskit.compatible_height
+            renderer: CANVAS,
+            w: window.innerWidth - 25,
+            h: window.innerHeight - 25
         });
 
         crosskit.clear();
@@ -23,14 +23,24 @@
             stroke: "black"
         });
 
-        crosskit.rect({
+        crosskit.roundedrect({
             x: 300,
             y: 100,
+            r: 30,
             w: 100,
             h: 100,
-            r: 20,
             fill: "red",
-            stroke: "black"
+            stroke: "red"
+        });
+
+        crosskit.text({
+            x: 100,
+            y: 32,
+            txt: "HELLO CANVAS!!!",
+            font: "monospace",
+            size: 32,
+            fill: "green",
+            stroke: "green"
         });
 
         crosskit.circle({
@@ -41,20 +51,10 @@
             stroke: "black"
         });
 
-        crosskit.text({
-            x: 100,
-            y: 32,
-            txt: "HELLO DOM!!!",
-            font: "monospace",
-            size: 32,
-            fill: "green",
-            stroke: "green"
-        });
-
         crosskit.line({
             pos1: [ 150,100 ],
             pos2: [ 300,400 ],
-            size: 5,
+            line_width: 5,
             stroke: "purple"
         });
 
@@ -64,7 +64,7 @@
             pos3: [ 500,400 ],
             fill: "dodgerblue",
             stroke: "purple",
-            line_width: 5
+            line_width: 5,
         });
     </script>
 </html>

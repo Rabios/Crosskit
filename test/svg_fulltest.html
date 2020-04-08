@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Crosskit DOM Full Test</title>
+        <title>Crosskit SVG Full Test</title>
     </head>
     <body></body>
     <script src="../build/crosskit.js"></script>
     <script>
         crosskit.init({
-            renderer: DOM,
-            w: crosskit.compatible_width,
-            h: crosskit.compatible_height
+            renderer: SVG,
+            w: window.innerWidth - 25,
+            h: window.innerHeight - 25
         });
 
         crosskit.clear();
@@ -44,7 +44,7 @@
         crosskit.text({
             x: 100,
             y: 32,
-            txt: "HELLO DOM!!!",
+            txt: "HELLO SVG!!!",
             font: "monospace",
             size: 32,
             fill: "green",

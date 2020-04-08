@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Crosskit DOM Full Test</title>
+        <title>Crosskit WebGL Full Test</title>
     </head>
     <body></body>
     <script src="../build/crosskit.js"></script>
     <script>
         crosskit.init({
-            renderer: DOM,
-            w: crosskit.compatible_width,
-            h: crosskit.compatible_height
+            renderer: WEBGL,
+            w: window.innerWidth - 25,
+            h: window.innerHeight - 25
         });
 
         crosskit.clear();
@@ -23,14 +23,22 @@
             stroke: "black"
         });
 
-        crosskit.rect({
+        crosskit.roundedrect({
             x: 300,
             y: 100,
-            w: 100,
-            h: 100,
-            r: 20,
+            r: 30,
             fill: "red",
-            stroke: "black"
+            stroke: "red"
+        });
+
+        crosskit.text({
+            x: 100,
+            y: 32,
+            txt: "HELLO WEBGL!!!",
+            font: "monospace",
+            size: 32,
+            fill: "green",
+            stroke: "green"
         });
 
         crosskit.circle({
@@ -39,16 +47,6 @@
             r: 50,
             fill: "yellow",
             stroke: "black"
-        });
-
-        crosskit.text({
-            x: 100,
-            y: 32,
-            txt: "HELLO DOM!!!",
-            font: "monospace",
-            size: 32,
-            fill: "green",
-            stroke: "green"
         });
 
         crosskit.line({
