@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crosskit DOM Full Test</title>
+    </head>
+    <body></body>
+    <script src="../build/crosskit.js"></script>
+    <script>
+        crosskit.init({
+            renderer: DOM,
+            w: crosskit.compatible_width,
+            h: crosskit.compatible_height
+        });
+
+        crosskit.clear();
+
+        crosskit.rect({
+            x: 0,
+            y: 100,
+            w: 100,
+            h: 100,
+            fill: "blue",
+            stroke: "black"
+        });
+
+        crosskit.rect({
+            x: 300,
+            y: 100,
+            w: 100,
+            h: 100,
+            r: 20,
+            fill: "red",
+            stroke: "black"
+        });
+
+        crosskit.circle({
+            x: 200,
+            y: 200,
+            r: 50,
+            fill: "yellow",
+            stroke: "black"
+        });
+
+        crosskit.text({
+            x: 100,
+            y: 32,
+            txt: "HELLO DOM!!!",
+            font: "monospace",
+            size: 32,
+            fill: "green",
+            stroke: "green"
+        });
+
+        crosskit.line({
+            pos1: [ 150,100 ],
+            pos2: [ 300,400 ],
+            size: 5,
+            stroke: "purple"
+        });
+
+        crosskit.triangle({
+            pos1: [ 600,600 ],
+            pos2: [ 700,400 ],
+            pos3: [ 500,400 ],
+            fill: "dodgerblue",
+            stroke: "purple",
+            line_width: 5
+        });
+    </script>
+</html>
