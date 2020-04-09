@@ -25,7 +25,7 @@ var dom_shapes = svg_shapes = [];
 var dom_svgs = dom_svgs_shapes = svg_anims = [];
 
 //Texts In WebGL Stored Into Arrays With Their Canvas
-var text_svg,texts = [];
+var text_svg,texts = images = [];
 
 //Modes Of Rendering
 var WEBGL = "WEBGL",
@@ -50,7 +50,7 @@ window.update = () =>
 var crosskit = {
 	compatible_width: window.innerWidth - 25,
 	compatible_height: window.innerHeight - 25,
-	version: "0.6.0",
+	version: "0.6.4",
 	init: (v) =>
 	{
 		renderer = (v.renderer).toString();
@@ -94,7 +94,7 @@ var crosskit = {
 			board.style.width = v.w;
       board.style.height = v.h;
       board.style.position = "relative";
-      board.style.bottom = "10px";
+      board.style.bottom = "3px";
 			body.appendChild(board);
       cakecanvas = board;
       svg_board = document.createElementNS("http://www.w3.org/2000/svg","svg");
@@ -351,7 +351,7 @@ var crosskit = {
     {
 		cakepen.globalAlpha = v.a;
       cakepen.fillStyle = v.fill;
-	  cakepen.strokeStyle = v.stroke;
+	  cakepen.strokeStyle = v.fill;
       var i, angle, x1, y1;
 	  for(i = 0; i < 360; i += 0.1)
 	  {
@@ -410,27 +410,43 @@ var crosskit = {
     if (renderer == WEBGL)
 	{
 		cakepen.globalAlpha = v.a;
-		cakepen.fillStyle = v.fill;
-		cakepen.strokeStyle = v.stroke;
-		var i, angle, x1, y1;
+		cakepen.fillStyle = v.stroke;
+		cakepen.strokeStyle = v.fill;
+    var i, angle, x1, y1;
+    cakepen.beginPath();
 		for(i = 0; i < 360; i += 0.1)
 		{
 			angle = i;
 			x1 = v.r * Math.cos(angle * Math.PI / 180);
-			y1 = v.r * Math.sin(angle * Math.PI / 180);
-			cakepen.fillRect(v.x + x1, v.y + y1,1,1);
-			cakepen.strokeRect(v.x + x1, v.y + y1,1,1);
-		}
-		cakepen.globalAlpha = 1;
+      y1 = v.r * Math.sin(angle * Math.PI / 180);
+      cakepen.moveTo(v.x,v.y);
+      cakepen.lineTo(x1 + v.x,y1 + v.y);
+      cakepen.lineTo(x1 + v.x, y1 + v.y);
     }
+    cakepen.closePath();
+    cakepen.fill();
+    cakepen.stroke();
+    var i, angle, x1, y1;
+	  for(i = 0; i < 360; i += 0.1)
+	  {
+      angle = i;
+      x1 = v.r * Math.cos(angle * Math.PI / 180);
+      y1 = v.r * Math.sin(angle * Math.PI / 180);
+      cakepen.fillRect(v.x + x1, v.y + y1,2,2);
+    }
+    cakepen.globalAlpha = 1;
+  }
 },
 
 	img: (v) =>
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
-			cakepen.globalAlpha = v.a;
-			cakepen.drawImage(v.img, v.x, v.y, v.w, v.h);
+      cakepen.globalAlpha = v.a;
+      images.push(new Image(v.w,v.h));
+      images[images.length - 1].src = v.img;
+      cakepen.drawImage(images[images.length - 1], v.x, v.y);
+			cakepen.drawImage(images[images.length - 1], v.x, v.y, v.w, v.h);
 			cakepen.globalAlpha = 1;
 		}
 		if (renderer == DOM)
@@ -441,8 +457,8 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.width = v.w + "px";
 			dom_shapes[dom_shapes.length - 1].style.height = v.h + "px";
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
-			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h + "px";
-			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w + "px";
+			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h / 60 + "px";
+			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w / 60 + "px";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
