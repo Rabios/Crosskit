@@ -26,6 +26,7 @@ options.x                        //X Position
 options.y                        //Y Position
 options.w                        //Width
 options.h                        //Height
+options.a                        //Drawing Alpha
 options.r                        //Radius(Not Optional)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
@@ -36,6 +37,7 @@ crosskit.circle(options)
 options.x                        //X Position
 options.y                        //Y Position
 options.r                        //Radius
+options.a                        //Drawing Alpha
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
@@ -45,6 +47,7 @@ crosskit.line(options)
 options.pos1                     //From Position,An Array Contains 2 Numbers Are X And Y
 options.pos2                     //To Position,An Array Contains 2 Numbers Are X And Y
 options.line_width               //Stroke Width(Optional)
+options.a                        //Drawing Alpha
 options.stroke                   //Stroke Color
 */
 
@@ -53,6 +56,7 @@ crosskit.square(options)
 options.x                        //X Position
 options.y                        //Y Position
 options.size                     //Square Size
+options.a                        //Drawing Alpha
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
@@ -70,6 +74,7 @@ options.x                        //X Position
 options.y                        //Y Position
 options.w                        //Width
 options.h                        //Height
+options.a                        //Drawing Alpha
 options.r                        //Radius(Optional)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
@@ -83,6 +88,7 @@ options.x                        //X Position
 options.y                        //Y Position 
 options.w                        //Width
 options.h                        //Height
+options.a                        //Drawing Alpha
 options.r                        //Radius(Only SVG And DOM Mode)
 */
 
@@ -93,6 +99,7 @@ options.y                        //Y Position
 options.txt                      //Text String
 options.fill                     //Fill Color(Optional)
 options.stroke                   //Stroke Color
+options.a                        //Drawing Alpha
 options.size                     //Font Size
 options.font                     //Font Type
 */
@@ -104,6 +111,7 @@ options.pos2                     //Point 2,Array Consists Of 2 Variables Are X A
 options.pos3                     //Point 3,Array Consists Of 2 Variables Are X And Y 
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
+options.a                        //Drawing Alpha
 options.line_width               //Stroke Width
 */
 
@@ -112,6 +120,7 @@ crosskit.polygon(options)
 options.points                   //Polygon Points,Array That Consists Of Arrays That Have 2 Variables,X Position And Y Position Of The Point 
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
+options.a                        //Drawing Alpha
 */
 
 crosskit.animate(options)
