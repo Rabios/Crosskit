@@ -1,9 +1,9 @@
 //Crosskit Rendering Engine
 //Rendering Elements
-var cakecanvas, cakepen, renderer, canvas, board, textdraw, svg_board;
+var cakecanvas, cakepen, renderer, canvas, board, svg_board;
 
 //Index Of Views Creation
-var index = biggest_x = biggest_y = 0, 
+var index = biggest_x = biggest_y = 0,webgl_texts = 0, 
 
 	//Important Variables For Correction
 	u = undefined,
@@ -25,13 +25,13 @@ var dom_shapes = svg_shapes = [];
 var dom_svgs = dom_svgs_shapes = svg_anims = [];
 
 //Texts In WebGL Stored Into Arrays With Their Canvas
-var text_canvases = [];
+var text_svg,texts = [];
 
 //Modes Of Rendering
 var WEBGL = "WEBGL",
-	CANVAS = "CANVAS",
-	SVG = "SVG",
-	DOM = "DOM"; //Simple
+	  CANVAS = "CANVAS",
+	  SVG = "SVG",
+	  DOM = "DOM"; //Simple
 
 
 window.update = () =>
@@ -40,17 +40,17 @@ window.update = () =>
            window.webkitRequestAnimationFrame ||
            window.mozRequestAnimationFrame    ||
            window.msRequestAnimationFrame     ||
-		   window.oRequestAnimationFrame      ||
-		   function( callback,fps ) 
-		   {
-			   window.setTimeout(callback, 1000 / fps);
-		   }
+		      window.oRequestAnimationFrame      ||
+		      function( callback,fps ) 
+		      {
+			        window.setTimeout(callback, 1000 / fps);
+		      }
 };
 
 var crosskit = {
 	compatible_width: window.innerWidth - 25,
 	compatible_height: window.innerHeight - 25,
-	version: "0.5.3",
+	version: "0.6.0",
 	init: (v) =>
 	{
 		renderer = (v.renderer).toString();
@@ -79,11 +79,13 @@ var crosskit = {
 			canvas = document.createElement("canvas");
 			canvas.width = v.w;
       canvas.height = v.h;
-			body.appendChild(canvas);
-			cakecanvas = document.getElementsByTagName("canvas")[index];
+      canvas.style.position = "relative";
+      canvas.style.left = "8px";
+			body.parentNode.appendChild(canvas);
+      cakecanvas = canvas;
 			WebGL2D.enable(cakecanvas);
-			cakepen = cakecanvas.getContext("webgl-2d");
-		}
+      cakepen = cakecanvas.getContext("webgl-2d");
+    }
 
 		if (renderer == DOM)
 		{
@@ -109,6 +111,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.lineWidth = v.line_width;
 			cakepen.beginPath();
@@ -130,7 +133,8 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("x2", (v.pos2[0]).toString());
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("y2", (v.pos2[1]).toString());
       dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
-      dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
       svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
 		}
 		//And Sorry,Drawing Lines And Anything Related-To
@@ -143,7 +147,8 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("x2", (v.pos2[0]).toString());
 			svg_shapes[svg_shapes.length - 1].setAttribute("y2", (v.pos2[1]).toString());
       svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
-      svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
@@ -154,6 +159,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
       if(v.r == undefined || v.r == null || v.r == 0)
       {
         cakepen.fillStyle = v.fill;
@@ -206,6 +212,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
@@ -214,6 +221,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.fillRect(v.x, v.y, v.size, v.size);
@@ -242,6 +250,7 @@ var crosskit = {
       svg_shapes[svg_shapes.length - 1].setAttribute("height", v.size);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
@@ -250,6 +259,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.color;
 			cakepen.fillRect(v.x, v.y, 1, 1);
 		}
@@ -263,6 +273,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.height = "1px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y + "1px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x + "1px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -274,6 +285,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("width", 1);
             svg_shapes[svg_shapes.length - 1].setAttribute("height", 1);
 			svg_shapes[svg_shapes.length - 1].setAttribute("color", v.color);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
@@ -282,6 +294,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.beginPath();
@@ -310,6 +323,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h * 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w * 2 + "px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -324,11 +338,13 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
     }
     
     if(renderer == WEBGL)
     {
+		cakepen.globalAlpha = v.a;
       cakepen.fillStyle = v.fill;
 	  cakepen.strokeStyle = v.stroke;
       var i, angle, x1, y1;
@@ -347,6 +363,7 @@ var crosskit = {
 	{
 		if (renderer == CANVAS)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.beginPath();
@@ -367,6 +384,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = "50%";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.r + "px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -378,11 +396,13 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("r", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
     }
     
     if (renderer == WEBGL)
 	{
+		cakepen.globalAlpha = v.a;
 		cakepen.fillStyle = v.fill;
 		cakepen.strokeStyle = v.stroke;
 		var i, angle, x1, y1;
@@ -399,7 +419,11 @@ var crosskit = {
 
 	img: (v) =>
 	{
-		if (renderer == CANVAS || renderer == WEBGL) cakepen.drawImage(v.img, v.x, v.y, v.w, v.h);
+		if (renderer == CANVAS || renderer == WEBGL)
+		{
+			cakepen.globalAlpha = v.a;
+			cakepen.drawImage(v.img, v.x, v.y, v.w, v.h);
+		}
 		if (renderer == DOM)
 		{
 			dom_shapes.push(new Image());
@@ -410,6 +434,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w + "px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 		if (renderer == SVG)
@@ -422,6 +447,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("width", v.w);
 			svg_shapes[svg_shapes.length - 1].setAttribute("height", v.h);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
   },
@@ -430,33 +456,14 @@ var crosskit = {
     //NOTES: v.size Parameter Only For SVG And DOM,Font Size Setted In CANVAS Mode With font
 	text: (v) =>
 	{
-		if (renderer == CANVAS)
+		if (renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.font = v.size + "px " + v.font;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-			cakepen.font = v.size + "px " + v.font;
 			cakepen.fillText(v.txt,v.x,v.y);
 			cakepen.strokeText(v.txt,v.x,v.y);
-		}
-
-		if(renderer == WEBGL)
-		{
-			text_canvases.push(document.createElement("canvas"));
-      text_canvases[text_canvases.length - 1].style.position = "relative";
-      text_canvases[text_canvases.length - 1].style.backgroundColor = "none";
-      text_canvases[text_canvases.length - 1].width = v.size * 11;
-      text_canvases[text_canvases.length - 1].height = v.size + 10;
-      text_canvases[text_canvases.length - 1].style.bottom = v.y * 21.2 - 0.8 + "px";
-      text_canvases[text_canvases.length - 1].style.left = v.x + 10 + "px";
-			text_canvases[text_canvases.length - 1].style.zIndex = 1;
-      body.parentNode.appendChild(text_canvases[text_canvases.length - 1]);
-			textdraw = text_canvases[text_canvases.length - 1].getContext("2d");
-			textdraw.font = v.size + "px " + v.font;
-			textdraw.fillStyle = v.fill;
-			textdraw.strokeStyle = v.stroke;
-			textdraw.fillText(v.txt,0,v.size);
-      textdraw.strokeText(v.txt,0,v.size);
 		}
 
 		if (renderer == DOM)
@@ -469,6 +476,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.color = v.fill;
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.size / 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.size / 2 + "px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -481,6 +489,7 @@ var crosskit = {
             svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
             svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
 			svg_shapes[svg_shapes.length - 1].style.fontFamily = v.font;
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			svg_shapes[svg_shapes.length - 1].style.fontSize = v.size + "px";
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -489,6 +498,7 @@ var crosskit = {
 	{
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
       cakepen.strokeStyle = v.stroke;
       cakepen.fillStyle = v.fill;
 			cakepen.lineWidth = v.line_width;
@@ -513,7 +523,9 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("points",(v.pos1[0] + "," + v.pos1[1] + " " + v.pos2[0] + "," + v.pos2[1] + " " + v.pos3[0] + "," + v.pos3[1] + " " + v.pos1[0] + "," + v.pos1[1]).toString());
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("fill", v.fill);
       dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
-      dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
+	  
 			svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
 		}
 		if(renderer == SVG)
@@ -522,7 +534,8 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("points",(v.pos1[0] + "," + v.pos1[1] + " " + v.pos2[0] + "," + v.pos2[1] + " " + v.pos3[0] + "," + v.pos3[1] + " " + v.pos1[0] + "," + v.pos1[1]).toString());
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
       svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
-      svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
@@ -530,6 +543,7 @@ var crosskit = {
 	{
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
+			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.beginPath();
@@ -553,6 +567,7 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("points",(domvg_polygon_points).toString());
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("fill", v.fill);
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
+			dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
 			svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
 		}
 		if(renderer == SVG)
@@ -564,13 +579,18 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("points",(domvg_polygon_points).toString());
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
 	clear: () =>
 	{
-    if (renderer == CANVAS || renderer == WEBGL) cakepen.clearRect(0, 0, cakepen.canvas.width, cakepen.canvas.height);
-    
+  if (renderer == CANVAS || renderer == WEBGL)
+  {
+    cakepen.fillStyle = "transparent";
+    cakepen.fillRect(0,0,cakepen.canvas.width,cakepen.canvas.height);
+    cakepen.clearRect(0, 0, cakepen.canvas.width, cakepen.canvas.height);
+  }
     //The Technology Used Here Is Somehow Weird
     //It Removes Every Shape Drawn From document
     //Then Remove All Elements From Array Using [].slice(0,array_length) 
@@ -581,12 +601,10 @@ var crosskit = {
         dom_shapes.slice(0, dom_shapes.length);
         cakecanvas.removeChild(dom_shapes[doms]);
 	  }
-	  for(svid = 0;svid < dom_svgs_shapes.length;svid++)
+	  for(svid = 0;svid < dom_svgs_shapes.length; svid++)
 	  {
-		doms_svgs_shapes.slice(0, dom_svgs_shapes.length);
-		cakecanvas.removeChild(dom_svgs_shapes[svid]);
-		dom_svgs.slice(0,dom_svgs.length);
-		cakecanvas.removeChild(dom_svgs[svid]);
+      dom_svgs_shapes.slice(0,dom_svgs_shapes.length);
+      svg_board.removeChild(dom_svgs_shapes[svid]);
 	  }
 	}
 	

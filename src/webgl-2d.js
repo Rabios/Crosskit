@@ -946,13 +946,11 @@
 
     // Need a solution for drawing text that isnt stupid slow
     gl.fillText = function fillText(text, x, y) {
-      /*
       textCtx.clearRect(0, 0, gl2d.canvas.width, gl2d.canvas.height);
       textCtx.fillStyle = gl.fillStyle;
       textCtx.fillText(text, x, y);
 
       gl.drawImage(textCanvas, 0, 0);
-      */
     };
 
     gl.strokeText = function strokeText() {};
