@@ -28,7 +28,7 @@ crosskit.rect({
     stroke: "black"
 });
 ```
-And If You Changed the Mode In mode Parameter To Any Of The 4 Modes Then It Will Be The Same Appears With Some Minor Change If It Found
+And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Renderers Then It Will Be The Same Appears With Some Minor Change If It Found
 
 ## Features
 - Lightweight And Simple With Size Of 70kb
