@@ -79,7 +79,7 @@ options.r                        //Radius(Optional)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
-//Notes: Only In WEBGL Renderer Mode,Fill And Stroke Color Must Be Same,With Using Radius Without Width And Height
+//Notes: Only In WEBGL Renderer Mode,Use Radius Without Defining Width And Height Cause It Gives Same Result
 
 crosskit.img(options)
 /*
@@ -148,6 +148,3 @@ options.interval                 //Pauses(Clears) An Interval
 options.frame                    //Pauses(Cancels) Animation Frame Which Is A Function
 */
 ```
-
-## NOTES
-1. Drawing Rounded Rectangles In WebGL Does Not Need To w And h (Width And Height),Only r (Radius) And fill And stroke Must Be The Same Color
