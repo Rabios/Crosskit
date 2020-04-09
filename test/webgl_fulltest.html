@@ -12,7 +12,7 @@
             h: window.innerHeight - 25
         });
 
-        crosskit.clear();
+        
 
         crosskit.rect({
             x: 0,
@@ -34,7 +34,7 @@
         crosskit.text({
             x: 100,
             y: 32,
-            txt: "HELLO WEBGL!!!",
+            txt: "HELLO " + renderer + "!!!",
             font: "monospace",
             size: 32,
             fill: "green",
@@ -64,5 +64,7 @@
             stroke: "purple",
             line_width: 5
         });
+
+        crosskit.clear();
     </script>
 </html>
