@@ -120,6 +120,7 @@ var crosskit = {
 			cakepen.lineTo(v.pos1[0], v.pos1[1]);
 			cakepen.closePath();
 			cakepen.stroke();
+			cakepen.globalAlpha = 1;
 		}
 		if(renderer == DOM)
 		{
@@ -185,6 +186,7 @@ var crosskit = {
         cakepen.fill();
 			  cakepen.stroke();
       }
+	  cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -226,6 +228,7 @@ var crosskit = {
 			cakepen.strokeStyle = v.stroke;
 			cakepen.fillRect(v.x, v.y, v.size, v.size);
 			cakepen.strokeRect(v.x, v.y, v.size, v.size);
+			cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -262,6 +265,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.color;
 			cakepen.fillRect(v.x, v.y, 1, 1);
+			cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -310,6 +314,7 @@ var crosskit = {
       cakepen.closePath();
       cakepen.fill();
 			cakepen.stroke();
+			cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -356,6 +361,7 @@ var crosskit = {
         cakepen.fillRect(v.x + x1 + v.r, v.y + y1 + v.r,v.r * 1.5,v.r * 1.5);
         cakepen.strokeRect(v.x + x1 + v.r, v.y + y1 + v.r,v.r * 1.5,v.r * 1.5);
 	  }
+	  cakepen.globalAlpha = 1;
 	}
 },
 
@@ -371,6 +377,7 @@ var crosskit = {
 			cakepen.closePath();
 			cakepen.fill();
 			cakepen.stroke();
+			cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -414,6 +421,7 @@ var crosskit = {
 			cakepen.fillRect(v.x + x1, v.y + y1,1,1);
 			cakepen.strokeRect(v.x + x1, v.y + y1,1,1);
 		}
+		cakepen.globalAlpha = 1;
     }
 },
 
@@ -423,6 +431,7 @@ var crosskit = {
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.drawImage(v.img, v.x, v.y, v.w, v.h);
+			cakepen.globalAlpha = 1;
 		}
 		if (renderer == DOM)
 		{
@@ -464,6 +473,7 @@ var crosskit = {
 			cakepen.strokeStyle = v.stroke;
 			cakepen.fillText(v.txt,v.x,v.y);
 			cakepen.strokeText(v.txt,v.x,v.y);
+			cakepen.globalAlpha = 1;
 		}
 
 		if (renderer == DOM)
@@ -510,6 +520,7 @@ var crosskit = {
       cakepen.closePath();
       cakepen.fill();
 			cakepen.stroke();
+			cakepen.globalAlpha = 1;
 		}
 		if(renderer == DOM)
 		{
@@ -552,6 +563,7 @@ var crosskit = {
 			cakepen.closePath();
 			cakepen.fill();
 			cakepen.stroke();
+			cakepen.globalAlpha = 1;
 		}
 		if(renderer == DOM)
 		{
