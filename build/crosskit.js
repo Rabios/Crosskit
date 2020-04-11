@@ -1,8 +1,8 @@
 //Crosskit,Portable And Lightweight Basic And Simple Cross Rendering Engine
 //Cross Between DOM,WEBGL,CANVAS,SVG
-//By Rabia Alhaffar,Built In 9/April/2020
+//By Rabia Alhaffar,Built In 11/April/2020
 //3rd Party Libraries Only Used: webgl-2d.js
-//For Crosskit Code,Start From Line 1312
+//For Crosskit Code,Start From Line 1310
 /**
  *  WebGL-2D.js - HTML5 Canvas2D API in a WebGL context
  *
