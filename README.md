@@ -2,7 +2,7 @@
 Rendering Engine That Renders Graphics In CanvasRenderingContext2D,WebGLRenderingContext,SVG,And DOM
 
 <div align="center">
-    <img src="crosskit_logo_new.png" width="500" height="500">
+    <img src="crosskit_logo_new.png" width="600" height="600">
 </div>
 
 ## Renderers(Rendering Modes)
