@@ -1,7 +1,7 @@
 # Crosskit
 Rendering Engine That Renders Graphics In CanvasRenderingContext2D,WebGLRenderingContext,SVG,And DOM
 
-<div style="text-align: center;">
+<div align="center">
     <img src="crosskit_logo_new.png" width="400" height="400">
 </div>
 
