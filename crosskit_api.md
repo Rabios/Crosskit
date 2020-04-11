@@ -147,4 +147,57 @@ crosskit.pause(options)
 options.interval                 //Pauses(Clears) An Interval 
 options.frame                    //Pauses(Cancels) Animation Frame Which Is A Function
 */
+
+crosskit.interval(f,t)           //Sets A Interval
+/*
+f                                //Function
+t                                //Time In Milliseconds
+*/
+
+crosskit.timer(f,t)              //Sets A Timeout
+/*
+f                                //Function
+t                                //Time In Milliseconds
+*/
+
+crosskit.bgimg(options)          //Sets Background Image
+/*
+options.src                      //Image
+options.a                        //Alpha
+*/
+
+crosskit.bgcolor(c)              //Sets Background Color
+/*
+c                                //Color
+*/
+
+rgb(options)                     //Returns RGB Color
+/*
+options.r                        //Red
+options.g                        //Green
+options.b                        //Blue
+*/
+
+rgba(options)                     //Returns RGBA Color
+/*
+options.r                         //Red
+options.g                         //Green
+options.b                         //Blue
+options.a                         //Alpha
+*/
+
+hsl(options)                     //Returns HSL Color
+/*
+options.h                        //Hue
+options.s                        //Saturation
+options.l
+*/
+
+hsla(options)                     //Returns HSL Color
+/*
+options.h                         //Hue
+options.s                         //Saturation
+options.l
+options.a                         //Alpha
+*/
 ```
