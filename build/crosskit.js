@@ -1343,7 +1343,7 @@ var WEBGL = "WEBGL",
 	  DOM = "DOM"; //Simple
 
 
-window.update = () =>
+window.update = function()
 {
 	return window.requestAnimationFrame       ||
            window.webkitRequestAnimationFrame ||
@@ -1359,8 +1359,8 @@ window.update = () =>
 var crosskit = {
 	compatible_width: window.innerWidth - 25,
 	compatible_height: window.innerHeight - 25,
-	version: "0.6.4",
-	init: (v) =>
+	version: "0.7.5",
+	init: function(v)
 	{
 		renderer = (v.renderer).toString();
 		if (renderer == CANVAS)
@@ -1416,7 +1416,7 @@ var crosskit = {
 		console.info("%cCROSSKIT " + crosskit.version + "\nRendering Mode: " + renderer,"font-size: 32px; background-color: purple; color: white; font-family: monospace;");
 	},
 
-	line: (v) =>
+	line: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1465,7 +1465,7 @@ var crosskit = {
 
 	//And When Drawing Shapes In SVG Or DOM We Get The Last Array Element Which Is The Shape We Pushed To Draw
 
-	rect: (v) =>
+	rect: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1528,7 +1528,7 @@ var crosskit = {
 		}
 	},
 
-	square: (v) =>
+	square: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1567,7 +1567,7 @@ var crosskit = {
 		}
 	},
 
-	pixel: (v) =>
+	pixel: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1603,7 +1603,7 @@ var crosskit = {
 		}
 	},
 
-	roundedrect: (v) =>
+	roundedrect: function(v)
 	{
 		if (renderer == CANVAS)
 		{
@@ -1674,7 +1674,7 @@ var crosskit = {
 	}
 },
 
-	circle: (v) =>
+	circle: function(v)
 	{
 		if (renderer == CANVAS)
 		{
@@ -1747,14 +1747,13 @@ var crosskit = {
   }
 },
 
-	img: (v) =>
+	img: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
       cakepen.globalAlpha = v.a;
       images.push(new Image(v.w,v.h));
       images[images.length - 1].src = v.img;
-      cakepen.drawImage(images[images.length - 1], v.x, v.y);
 			cakepen.drawImage(images[images.length - 1], v.x, v.y, v.w, v.h);
 			cakepen.globalAlpha = 1;
 		}
@@ -1788,7 +1787,7 @@ var crosskit = {
     
     //NOTES: If Parameter To Use With DOM Or SVG,Set It To 0 Or "none" In Case Of That
     //NOTES: v.size Parameter Only For SVG And DOM,Font Size Setted In CANVAS Mode With font
-	text: (v) =>
+	text: function(v)
 	{
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1829,7 +1828,7 @@ var crosskit = {
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
-	triangle: (v) =>
+	triangle: function(v)
 	{
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1875,7 +1874,7 @@ var crosskit = {
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
-	polygon: (v) =>
+	polygon: function(v)
 	{
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
@@ -1920,7 +1919,7 @@ var crosskit = {
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
-	clear: () =>
+	clear: function()
 	{
   if (renderer == CANVAS || renderer == WEBGL)
   {
@@ -1954,7 +1953,17 @@ var crosskit = {
 		}
 	}
 },
-	animate: (v) =>
+	bgcolor: function(c)
+	{
+		if(renderer == CANVAS || renderer == WEBGL || renderer == SVG || renderer == DOM) cakecanvas.style.backgroundColor = c;
+		if(renderer == DOM) svg_board.style.backgroundColor = c;
+	},
+	bgimg: function(v)
+	{
+    cakecanvas.style.backgroundImage = "url(" + v.src + ")";
+    cakecanvas.style.opacity = v.a;
+  },
+	animate: function(v)
 	{
 		if(renderer == CANVAS || renderer == WEBGL || renderer == DOM) window.requestAnimationFrame(v.frame);
 		if(renderer == SVG)
@@ -1975,17 +1984,29 @@ var crosskit = {
 			svg_obj.appendChild(svg_anims[svg_anims.length - 1]);
 		}
 	},
-	update: (f,t) =>
+	interval: function(f,t)
+	{
+		return setInterval(f,t);
+	},
+	timer: function(f,t)
+	{
+		return setTimeout(f,t);
+	},
+	update: function(f,t)
 	{
 		return window.update(f,t);
 	},
-	pause: (v) =>
+	pause: function(v)
 	{
 		if(v.interval == undefined && (renderer == DOM || renderer == CANVAS  || renderer == WEBGL )) window.cancelAnimationFrame(v.frame);
 		if(!(v.interval == undefined) && (renderer == DOM || renderer == CANVAS  || renderer == WEBGL )) window.clearInterval(v.interval);
 	}  
 };
-window.addEventListener("keypress",(e) => {
+var rgb = function(v) { return "rgb(" + v.r + "," + v.g + "," + v.b + ")"; };
+var rgba = function(v) { return "rgba(" + v.r + "," + v.g + "," + v.b + "," + v.a + ")"; };
+var hsl = function(v) { return "hsl(" + v.h + "," + v.s + "," + v.l + ")"; };
+var hsla = function(v) { return "hsla(" + v.h + "," + v.s + "," + v.l + "," + v.a + ")"; };
+window.addEventListener("keypress",function(e) {
 	if(e.key == "f" && !window.fullscreen) document.documentElement.requestFullscreen();
 	if(e.key == "f" && window.fullscreen) document.documentElement.exitFullscreen();
 });
