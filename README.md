@@ -1,7 +1,9 @@
 # Crosskit
 Rendering Engine That Renders Graphics In CanvasRenderingContext2D,WebGLRenderingContext,SVG,And DOM
 
-<img src="crosskit_logo_new.png" style="text-align: center;" width="400" height="400">
+<div style="text-align: center;">
+    <img src="crosskit_logo_new.png" width="400" height="400">
+</div>
 
 ## Renderers(Rendering Modes)
 1. `CANVAS`,Runs On `CanvasRenderingContext2D`
