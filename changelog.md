@@ -1,6 +1,15 @@
 # Changelog
 > NOTES: Crosskit Will Remain Backward Compatible,Open Source,And Free,Forever...
 
+## 11/April/2020 (Night)
+Version 0.8.6
+
+### Additions
+Added Rotation
+
+### Bug Fixes
+Fixed Problem When Some Shapes Does Not Set It's Alpha Due To Missing Lines Of Code
+
 ## 11/April/2020
 Version 0.7.5
 
