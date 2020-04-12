@@ -12,7 +12,7 @@
             h: window.innerHeight - 25
         });
 
-        
+        crosskit.clear();
 
         crosskit.rect({
             x: 0,
@@ -20,25 +20,8 @@
             w: 100,
             h: 100,
             fill: "blue",
-            stroke: "black"
-        });
-
-        crosskit.roundedrect({
-            x: 300,
-            y: 100,
-            r: 30,
-            fill: "red",
-            stroke: "red"
-        });
-
-        crosskit.text({
-            x: 100,
-            y: 32,
-            txt: "HELLO " + renderer + "!!!",
-            font: "monospace",
-            size: 32,
-            fill: "green",
-            stroke: "green"
+            stroke: "black",
+            angle: 0
         });
 
         crosskit.circle({
@@ -48,12 +31,33 @@
             fill: "yellow",
             stroke: "black"
         });
+        
+        crosskit.roundedrect({
+            x: 300,
+            y: 100,
+            r: 30,
+            fill: "red",
+            stroke: "red",
+            angle: 0
+        });
+
+        crosskit.text({
+            x: 100,
+            y: 32,
+            txt: "HELLO " + renderer + "!!!",
+            font: "monospace",
+            size: 32,
+            fill: "green",
+            stroke: "green",
+            angle: 0
+        });
 
         crosskit.line({
             pos1: [ 150,100 ],
             pos2: [ 300,400 ],
             size: 5,
-            stroke: "purple"
+            stroke: "purple",
+            angle: 0
         });
 
         crosskit.triangle({
@@ -62,7 +66,8 @@
             pos3: [ 500,400 ],
             fill: "dodgerblue",
             stroke: "purple",
-            line_width: 5
+            line_width: 5,
+            angle: 0
         });
 
         crosskit.img({
@@ -70,7 +75,8 @@
             x: 800,
             y: 100,
             w: 300,
-            h: 300
+            h: 300,
+            angle: 0
         });
     </script>
 </html>
