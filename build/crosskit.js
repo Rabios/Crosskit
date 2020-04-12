@@ -1359,7 +1359,7 @@ window.update = function()
 var crosskit = {
 	compatible_width: window.innerWidth - 25,
 	compatible_height: window.innerHeight - 25,
-	version: "0.7.5",
+	version: "0.8.6",
 	init: function(v)
 	{
 		renderer = (v.renderer).toString();
@@ -1418,11 +1418,13 @@ var crosskit = {
 
 	line: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.lineWidth = v.line_width;
+			cakepen.rotate(v.angle);
 			cakepen.beginPath();
 			cakepen.moveTo(v.pos1[0], v.pos1[1]);
 			cakepen.lineTo(v.pos2[0], v.pos2[1]);
@@ -1430,6 +1432,7 @@ var crosskit = {
 			cakepen.closePath();
 			cakepen.stroke();
 			cakepen.globalAlpha = 1;
+			cakepen.rotate(-v.angle);
 		}
 		if(renderer == DOM)
 		{
@@ -1444,6 +1447,7 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("y2", (v.pos2[1]).toString());
       dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
 	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
       svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
 		}
@@ -1458,6 +1462,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("y2", (v.pos2[1]).toString());
       svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
 	  svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 	  svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1467,25 +1472,25 @@ var crosskit = {
 
 	rect: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
+			cakepen.fillStyle = v.fill;
+			cakepen.strokeStyle = v.stroke;
+			cakepen.rotate(v.angle);
       if(v.r == undefined || v.r == null || v.r == 0)
       {
-        cakepen.fillStyle = v.fill;
-        cakepen.strokeStyle = v.stroke;
         cakepen.fillRect(v.x, v.y, v.w, v.h);
-        cakepen.strokeRect(v.x, v.y, v.w, v.h);
+		cakepen.strokeRect(v.x, v.y, v.w, v.h);
       }
       if(v.r > 0)
       {
-        cakepen.fillStyle = v.fill;
-        cakepen.strokeStyle = v.stroke;
         cakepen.beginPath();
         cakepen.moveTo(v.x + v.r,v.y);
         cakepen.lineTo(v.x + v.w - v.r,v.y);
         cakepen.quadraticCurveTo(v.x + v.w,v.y,v.x + v.w,v.y + v.r);
-		    cakepen.lineTo(v.x + v.w,v.y + v.h - v.r);
+		cakepen.lineTo(v.x + v.w,v.y + v.h - v.r);
         cakepen.quadraticCurveTo(v.x + v.w,v.y + v.h,v.x + v.w - v.r,v.y + v.h);
         cakepen.lineTo(v.x + v.r,v.y + v.h);
         cakepen.quadraticCurveTo(v.x,v.y + v.h,v.x,v.y + v.h - v.r);
@@ -1493,8 +1498,9 @@ var crosskit = {
         cakepen.quadraticCurveTo(v.x,v.y,v.x + v.r,v.y);
         cakepen.closePath();
         cakepen.fill();
-			  cakepen.stroke();
-      }
+		cakepen.stroke();
+	  }
+	  cakepen.rotate(-v.angle);
 	  cakepen.globalAlpha = 1;
 		}
 
@@ -1509,6 +1515,8 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.top = v.y + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x + "px";
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -1523,6 +1531,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1530,13 +1539,15 @@ var crosskit = {
 
 	square: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
+		    cakepen.rotate(v.angle);
 			cakepen.fillRect(v.x, v.y, v.size, v.size);
-			cakepen.strokeRect(v.x, v.y, v.size, v.size);
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 
@@ -1550,6 +1561,8 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.height = v.size / 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.size * 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.size * 2 + "px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
+			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
 
@@ -1562,6 +1575,7 @@ var crosskit = {
       svg_shapes[svg_shapes.length - 1].setAttribute("height", v.size);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1569,11 +1583,14 @@ var crosskit = {
 
 	pixel: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.color;
+		    cakepen.rotate(v.angle);
 			cakepen.fillRect(v.x, v.y, 1, 1);
+			cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 
@@ -1586,6 +1603,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.height = "1px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y + "1px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x + "1px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
@@ -1598,6 +1616,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("width", 1);
             svg_shapes[svg_shapes.length - 1].setAttribute("height", 1);
 			svg_shapes[svg_shapes.length - 1].setAttribute("color", v.color);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1605,11 +1624,13 @@ var crosskit = {
 
 	roundedrect: function(v)
 	{
+		
 		if (renderer == CANVAS)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
+		    cakepen.rotate(v.angle);
 			cakepen.beginPath();
 			cakepen.moveTo(v.x + v.r,v.y);
 			cakepen.lineTo(v.x + v.w - v.r,v.y);
@@ -1623,6 +1644,7 @@ var crosskit = {
       cakepen.closePath();
       cakepen.fill();
 			cakepen.stroke();
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 
@@ -1637,6 +1659,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h * 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w * 2 + "px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
@@ -1652,15 +1675,18 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)"; 
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
     }
     
     if(renderer == WEBGL)
     {
+		if(v.angle == undefined) v.angle = 0;
 		cakepen.globalAlpha = v.a;
       cakepen.fillStyle = v.fill;
 	  cakepen.strokeStyle = v.fill;
+		    cakepen.rotate(v.angle);
       var i, angle, x1, y1;
 	  for(i = 0; i < 360; i += 0.1)
 	  {
@@ -1670,22 +1696,26 @@ var crosskit = {
         cakepen.fillRect(v.x + x1 + v.r, v.y + y1 + v.r,v.r * 1.5,v.r * 1.5);
         cakepen.strokeRect(v.x + x1 + v.r, v.y + y1 + v.r,v.r * 1.5,v.r * 1.5);
 	  }
+	  cakepen.rotate(-v.angle);
 	  cakepen.globalAlpha = 1;
 	}
 },
 
 	circle: function(v)
 	{
+		
 		if (renderer == CANVAS)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
+		    cakepen.rotate(v.angle);
 			cakepen.beginPath();
 			cakepen.arc(v.x, v.y, v.r, 90, 180 * Math.PI);
 			cakepen.closePath();
 			cakepen.fill();
 			cakepen.stroke();
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 
@@ -1700,6 +1730,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = "50%";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.r + "px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
@@ -1712,29 +1743,35 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("r", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
     }
     
     if (renderer == WEBGL)
 	{
+		
 		cakepen.globalAlpha = v.a;
 		cakepen.fillStyle = v.stroke;
 		cakepen.strokeStyle = v.fill;
-    var i, angle, x1, y1;
+		if(v.angle == undefined) v.angle = 0;
+		cakepen.rotate(v.angle);
+	var i, angle, x1, y1;
     cakepen.beginPath();
 		for(i = 0; i < 360; i += 0.1)
 		{
 			angle = i;
 			x1 = v.r * Math.cos(angle * Math.PI / 180);
-      y1 = v.r * Math.sin(angle * Math.PI / 180);
+	  y1 = v.r * Math.sin(angle * Math.PI / 180);
+	  
       cakepen.moveTo(v.x,v.y);
       cakepen.lineTo(x1 + v.x,y1 + v.y);
       cakepen.lineTo(x1 + v.x, y1 + v.y);
     }
-    cakepen.closePath();
+	cakepen.closePath();
     cakepen.fill();
-    cakepen.stroke();
+	cakepen.stroke();
+	
     var i, angle, x1, y1;
 	  for(i = 0; i < 360; i += 0.1)
 	  {
@@ -1742,19 +1779,24 @@ var crosskit = {
       x1 = v.r * Math.cos(angle * Math.PI / 180);
       y1 = v.r * Math.sin(angle * Math.PI / 180);
       cakepen.fillRect(v.x + x1, v.y + y1,2,2);
-    }
-    cakepen.globalAlpha = 1;
+	}
+	cakepen.rotate(-v.angle);
+	cakepen.globalAlpha = 1;
+	
   }
 },
 
 	img: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
-      cakepen.globalAlpha = v.a;
+	  cakepen.globalAlpha = v.a;
+		    cakepen.rotate(v.angle);
       images.push(new Image(v.w,v.h));
-      images[images.length - 1].src = v.img;
+            images[images.length - 1].src = v.img;
 			cakepen.drawImage(images[images.length - 1], v.x, v.y, v.w, v.h);
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 		if (renderer == DOM)
@@ -1767,6 +1809,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.borderRadius = v.r + "px";
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.h / 60 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.w / 60 + "px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
@@ -1780,6 +1823,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("ry", v.r);
 			svg_shapes[svg_shapes.length - 1].setAttribute("width", v.w);
 			svg_shapes[svg_shapes.length - 1].setAttribute("height", v.h);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1789,14 +1833,17 @@ var crosskit = {
     //NOTES: v.size Parameter Only For SVG And DOM,Font Size Setted In CANVAS Mode With font
 	text: function(v)
 	{
+		
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.font = v.size + "px " + v.font;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
+		    cakepen.rotate(v.angle);
 			cakepen.fillText(v.txt,v.x,v.y);
 			cakepen.strokeText(v.txt,v.x,v.y);
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 
@@ -1810,6 +1857,7 @@ var crosskit = {
 			dom_shapes[dom_shapes.length - 1].style.color = v.fill;
 			dom_shapes[dom_shapes.length - 1].style.top = v.y - v.size / 2 + "px";
 			dom_shapes[dom_shapes.length - 1].style.left = v.x - v.size / 2 + "px";
+			dom_shapes[dom_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_shapes[dom_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(dom_shapes[dom_shapes.length - 1]);
 		}
@@ -1823,6 +1871,7 @@ var crosskit = {
             svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
             svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
 			svg_shapes[svg_shapes.length - 1].style.fontFamily = v.font;
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			svg_shapes[svg_shapes.length - 1].style.fontSize = v.size + "px";
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
@@ -1830,12 +1879,14 @@ var crosskit = {
 	},
 	triangle: function(v)
 	{
+		
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
       cakepen.strokeStyle = v.stroke;
       cakepen.fillStyle = v.fill;
 			cakepen.lineWidth = v.line_width;
+		    cakepen.rotate(v.angle);
 			cakepen.beginPath();
 			cakepen.moveTo(v.pos1[0], v.pos1[1]);
 			cakepen.lineTo(v.pos2[0], v.pos2[1]);
@@ -1844,6 +1895,7 @@ var crosskit = {
       cakepen.closePath();
       cakepen.fill();
 			cakepen.stroke();
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 		if(renderer == DOM)
@@ -1859,6 +1911,7 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("fill", v.fill);
       dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
 	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.strokeWidth = v.line_width;
+	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 	  dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
 	  
 			svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
@@ -1870,23 +1923,27 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
       svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
 	  svg_shapes[svg_shapes.length - 1].style.strokeWidth = v.line_width;
+	  svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 	  svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
 	},
 	polygon: function(v)
 	{
+		
 		if(renderer == CANVAS || renderer == WEBGL)
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
+		    cakepen.rotate(v.angle);
 			cakepen.beginPath();
 			cakepen.moveTo(v.points[0][0], v.points[0][1]);
 			for (var i = 0; i < v.points.length; i++) cakepen.lineTo(v.points[i][0], v.points[i][1]);
 			cakepen.closePath();
 			cakepen.fill();
 			cakepen.stroke();
+		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
 		}
 		if(renderer == DOM)
@@ -1903,6 +1960,7 @@ var crosskit = {
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("points",(domvg_polygon_points).toString());
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("fill", v.fill);
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].setAttribute("stroke", v.stroke);
+			dom_svgs_shapes[dom_svgs_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			dom_svgs_shapes[dom_svgs_shapes.length - 1].style.opacity = v.a;
 			svg_board.appendChild(dom_svgs_shapes[dom_svgs_shapes.length - 1]);
 		}
@@ -1915,6 +1973,7 @@ var crosskit = {
 			svg_shapes[svg_shapes.length - 1].setAttribute("points",(domvg_polygon_points).toString());
 			svg_shapes[svg_shapes.length - 1].setAttribute("fill", v.fill);
 			svg_shapes[svg_shapes.length - 1].setAttribute("stroke", v.stroke);
+			svg_shapes[svg_shapes.length - 1].style.transform = "rotate(" + v.angle + "deg)";
 			svg_shapes[svg_shapes.length - 1].style.opacity = v.a;
 			cakecanvas.appendChild(svg_shapes[svg_shapes.length - 1]);
 		}
@@ -1960,9 +2019,9 @@ var crosskit = {
 	},
 	bgimg: function(v)
 	{
-    cakecanvas.style.backgroundImage = "url(" + v.src + ")";
-    cakecanvas.style.opacity = v.a;
-  },
+		cakecanvas.style.backgroundImage = "url(" + v.src + ")";
+		cakecanvas.style.opacity = v.a;
+	},
 	animate: function(v)
 	{
 		if(renderer == CANVAS || renderer == WEBGL || renderer == DOM) window.requestAnimationFrame(v.frame);
