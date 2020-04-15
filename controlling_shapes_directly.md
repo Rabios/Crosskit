@@ -10,7 +10,7 @@ crosskit.init({
     renderer: SVG
 });
 
-//This Rect It's In Index 0 Of `svg_shapes` Array
+//This Rect It's In Index 0 Of svg_shapes Array
 crosskit.rect({
     x: 100,
     y: 100,
