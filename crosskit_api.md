@@ -28,7 +28,7 @@ options.w                        //Width
 options.h                        //Height
 options.a                        //Drawing Alpha
 options.r                        //Radius(Not Optional)
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
@@ -39,7 +39,7 @@ options.x                        //X Position
 options.y                        //Y Position
 options.r                        //Radius
 options.a                        //Drawing Alpha
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
@@ -50,7 +50,7 @@ options.pos1                     //From Position,An Array Contains 2 Numbers Are
 options.pos2                     //To Position,An Array Contains 2 Numbers Are X And Y
 options.line_width               //Stroke Width(Optional)
 options.a                        //Drawing Alpha
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.stroke                   //Stroke Color
 */
 
@@ -60,7 +60,7 @@ options.x                        //X Position
 options.y                        //Y Position
 options.size                     //Square Size
 options.a                        //Drawing Alpha
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
 */
@@ -69,7 +69,7 @@ crosskit.pixel(options)
 /*
 options.x                        //X Position
 options.y                        //Y Position
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.color                    //Pixel Color
 */
 
@@ -79,7 +79,7 @@ options.x                        //X Position
 options.y                        //Y Position
 options.w                        //Width
 options.h                        //Height
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.a                        //Drawing Alpha
 options.r                        //Radius(Optional)
 options.fill                     //Fill Color
@@ -95,7 +95,7 @@ options.y                        //Y Position
 options.w                        //Width
 options.h                        //Height
 options.a                        //Drawing Alpha
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.r                        //Radius(Only SVG And DOM Mode)
 */
 
@@ -107,7 +107,7 @@ options.txt                      //Text String
 options.fill                     //Fill Color(Optional)
 options.stroke                   //Stroke Color
 options.a                        //Drawing Alpha
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.size                     //Font Size
 options.font                     //Font Type
 */
@@ -119,7 +119,7 @@ options.pos2                     //Point 2,Array Consists Of 2 Variables Are X A
 options.pos3                     //Point 3,Array Consists Of 2 Variables Are X And Y 
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.a                        //Drawing Alpha
 options.line_width               //Stroke Width
 */
@@ -129,7 +129,7 @@ crosskit.polygon(options)
 options.points                   //Polygon Points,Array That Consists Of Arrays That Have 2 Variables,X Position And Y Position Of The Point 
 options.fill                     //Fill Color
 options.stroke                   //Stroke Color
-options.angle                    //Rotation Angle
+options.angle                    //Rotation Angle(Default Is 0,Increase It To Rotate Shape)
 options.a                        //Drawing Alpha
 */
 
@@ -211,3 +211,6 @@ options.l
 options.a                         //Alpha
 */
 ```
+## Notes
+1. Images Are Drawn Black In WEBGL Renderer Due To Issue,It Will Be Fixed Very Soon In Short Time
+2. Drawing Circles Can Cause At Sometimes Low Performance(At Startup Only)
