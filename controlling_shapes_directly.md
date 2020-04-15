@@ -3,7 +3,7 @@
 ## SVG Renderer
 SVG Shapes That Are Drawn Located In Array `svg_shapes` With Index Starts From 0,When SVG Shape Is Drawn It Pushes The SVG Shape To The Array `svg_shapes`
 
-```javascripts
+```javascript
 crosskit.init({
     w: crosskit.compatible_width,
     h: crosskit.compatible_height,
