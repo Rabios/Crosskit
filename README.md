@@ -39,16 +39,15 @@ And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Rende
 - Easy And Fast To Switch Between Modes
 - Same Code And Same Base Without Changes When Changing Modes
 - Easy To Extend And Mod
-- Easy To Create Animations And Updates In Code,So Developing Games,Sketches,And Animations  With It Is Simple
-- Great Performance With Backward Compatibility
+- Easy To Create Animations And Updates In Code,So Developing Games,Creating Sketches And Animations With It Is Simple
+- Great Performance With Backward Compatibility For It's Oldest Versions
 - Works In All Weak Browsers,Even Internet Explorer 9 And Older(If Supports CSS Or SVG)
 - Developed With Care,All It's Functions Tested In Each Renderer
-- Backward Compatible
 - Portable And Easy To Setup Everywhere,No Dependencies,No Additions Needed
 
 ## Special Thanks
 1. [Corban Brook](http://twitter.com/corban),[Bobby Richter](http://twitter.com/secretrobotron),And [Charles J. Cliffe](http://twitter.com/ccliffe) At Game Closure For Developing [WebGL-2D](https://github.com/gameclosure/webgl-2d)
-2. [Youn Lok](https://github.com/younlok),For Supporting Me While Developing Crosskit
+2. [Youn Lok](https://github.com/younlok),For Supporting Me By Cheering Me While Developing Crosskit
 3. Everyone Used Crosskit,And Everyone Contributed To It,And Supported It's Development
 
 ## More
