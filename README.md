@@ -33,12 +33,18 @@ crosskit.rect({
 And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Renderers Then It Will Be The Same Appears With Some Minor Change If It Found
 
 ## Features
-- Lightweight And Simple With Size Of 70kb
+- Lightweight And Simple With Size Of 70kb (Smaller Than [Two.js](https://two.js.org) And [Hilo](https://hiloteam.github.io))
+- Minimifed Version In Size Of 40kb
 - 4 Rendering Modes: CANVAS,WEBGL,SVG,DOM
-- Easy To Switch Between Modes
+- Easy And Fast To Switch Between Modes
 - Same Code And Same Base Without Changes When Changing Modes
 - Easy To Extend And Mod
 - Easy To Create Animations And Updates In Code,So Developing Games,Sketches,And Animations  With It Is Simple
+- Great Performance With Backward Compatibility
+- Works In All Weak Browsers,Even Internet Explorer 9 And Older(If Supports CSS Or SVG)
+- Developed With Care,All It's Functions Tested In Each Renderer
+- Backward Compatible
+- Portable And Easy To Setup Everywhere,No Dependencies,No Additions Needed
 
 ## Special Thanks
 1. [Corban Brook](http://twitter.com/corban),[Bobby Richter](http://twitter.com/secretrobotron),And [Charles J. Cliffe](http://twitter.com/ccliffe) At Game Closure For Developing [WebGL-2D](https://github.com/gameclosure/webgl-2d)
