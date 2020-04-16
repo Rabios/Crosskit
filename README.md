@@ -41,7 +41,7 @@ And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Rende
 - Easy To Extend And Mod
 - Easy To Create Animations And Updates In Code,So Developing Games,Creating Sketches And Animations With It Is Simple
 - Great Performance With Backward Compatibility For It's Oldest Versions
-- Works In All Weak Browsers,Even Internet Explorer 9 And Older(If Supports CSS Or SVG)
+- Works In All Weak Browsers,Even Internet Explorer Versions 10,11,12
 - Developed With Care,All It's Functions Tested In Each Renderer
 - Portable And Easy To Setup Everywhere,No Dependencies,No Additions Needed
 
