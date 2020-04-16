@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crosskit Fulltests</title>
+    </head>
+    <body>
+        <div id="selectview">
+            SVG<input id="m1" type="radio"> DOM<input id="m2" type="radio"> WebGLRenderingContext<input id="m3" type="radio"> CanvasRenderingContext2D<input id="m4" type="radio"> <button id="run" onclick="run_fulltest()"> START RENDERING</button>
+        </div>
+        <iframe id="view" src=""></iframe>
+    </body>
+    <script>
+        document.getElementById("m1").checked = false;
+        document.getElementById("m2").checked = false;
+        document.getElementById("m3").checked = false;
+        document.getElementById("m4").checked = false;
+        for(var c = 0;c < document.getElementsByTagName("input").length;c++)
+        {
+            document.getElementsByTagName("input")[c].ondblclick = () =>
+            {
+                for(var c = 0;c < document.getElementsByTagName("input").length;c++) document.getElementsByTagName("input")[c].checked = false;
+            }
+        };
+        document.getElementById("view").width = window.innerWidth - 25;
+        document.getElementById("view").height = window.innerHeight - 25;
+        var run_fulltest = () =>
+        {
+            if(document.getElementById("m1").checked) document.getElementById("view").src = "svg_fulltest.html";
+            if(document.getElementById("m2").checked) document.getElementById("view").src = "dom_fulltest.html";
+            if(document.getElementById("m3").checked) document.getElementById("view").src = "webgl_fulltest.html";
+            if(document.getElementById("m4").checked) document.getElementById("view").src = "canvas_fulltest.html";
+        };
+    </script>
+    <style>
+    #selectview
+    {
+        height: 75px;
+        background-color: darkorchid;
+        color: white;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 22px;
+    }
+
+    input
+    {
+        color: white;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 22px;
+    }
+
+    #run
+    {
+        background-color: purple;
+        color: white;
+        width: 400px;
+        height: 75px;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 22px;
+    }
+    </style>
+</html>
