@@ -1,6 +1,12 @@
 # Changelog
 > NOTES: Crosskit Will Remain Backward Compatible,Open Source,And Free,Forever...
 
+## 16/April/2020
+Version 0.8.7
+
+### Bug Fixes
+Fixed Compatible Rotation In CANVAS And WEBGL Modes
+
 ## 11/April/2020 (Night)
 Version 0.8.6
 
