@@ -1359,7 +1359,7 @@ window.update = function()
 var crosskit = {
 	compatible_width: window.innerWidth - 25,
 	compatible_height: window.innerHeight - 25,
-	version: "0.8.6",
+	version: "0.8.7",
 	init: function(v)
 	{
 		renderer = (v.renderer).toString();
@@ -1424,7 +1424,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.strokeStyle = v.stroke;
 			cakepen.lineWidth = v.line_width;
-			cakepen.rotate(v.angle);
+			cakepen.rotate(v.angle / 50);
 			cakepen.beginPath();
 			cakepen.moveTo(v.pos1[0], v.pos1[1]);
 			cakepen.lineTo(v.pos2[0], v.pos2[1]);
@@ -1478,7 +1478,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-			cakepen.rotate(v.angle);
+			cakepen.rotate(v.angle / 50);
       if(v.r == undefined || v.r == null || v.r == 0)
       {
         cakepen.fillRect(v.x, v.y, v.w, v.h);
@@ -1545,7 +1545,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.fillRect(v.x, v.y, v.size, v.size);
 		    cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
@@ -1588,7 +1588,7 @@ var crosskit = {
 		{
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.color;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.fillRect(v.x, v.y, 1, 1);
 			cakepen.rotate(-v.angle);
 			cakepen.globalAlpha = 1;
@@ -1630,7 +1630,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.beginPath();
 			cakepen.moveTo(v.x + v.r,v.y);
 			cakepen.lineTo(v.x + v.w - v.r,v.y);
@@ -1686,7 +1686,7 @@ var crosskit = {
 		cakepen.globalAlpha = v.a;
       cakepen.fillStyle = v.fill;
 	  cakepen.strokeStyle = v.fill;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
       var i, angle, x1, y1;
 	  for(i = 0; i < 360; i += 0.1)
 	  {
@@ -1709,7 +1709,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.beginPath();
 			cakepen.arc(v.x, v.y, v.r, 90, 180 * Math.PI);
 			cakepen.closePath();
@@ -1755,7 +1755,7 @@ var crosskit = {
 		cakepen.fillStyle = v.stroke;
 		cakepen.strokeStyle = v.fill;
 		if(v.angle == undefined) v.angle = 0;
-		cakepen.rotate(v.angle);
+		cakepen.rotate(v.angle / 50);
 	var i, angle, x1, y1;
     cakepen.beginPath();
 		for(i = 0; i < 360; i += 0.1)
@@ -1792,7 +1792,7 @@ var crosskit = {
 		if (renderer == CANVAS || renderer == WEBGL)
 		{
 	  cakepen.globalAlpha = v.a;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
       images.push(new Image(v.w,v.h));
             images[images.length - 1].src = v.img;
 			cakepen.drawImage(images[images.length - 1], v.x, v.y, v.w, v.h);
@@ -1840,7 +1840,7 @@ var crosskit = {
 			cakepen.font = v.size + "px " + v.font;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.fillText(v.txt,v.x,v.y);
 			cakepen.strokeText(v.txt,v.x,v.y);
 		    cakepen.rotate(-v.angle);
@@ -1886,7 +1886,7 @@ var crosskit = {
       cakepen.strokeStyle = v.stroke;
       cakepen.fillStyle = v.fill;
 			cakepen.lineWidth = v.line_width;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.beginPath();
 			cakepen.moveTo(v.pos1[0], v.pos1[1]);
 			cakepen.lineTo(v.pos2[0], v.pos2[1]);
@@ -1936,7 +1936,7 @@ var crosskit = {
 			cakepen.globalAlpha = v.a;
 			cakepen.fillStyle = v.fill;
 			cakepen.strokeStyle = v.stroke;
-		    cakepen.rotate(v.angle);
+		    cakepen.rotate(v.angle / 50);
 			cakepen.beginPath();
 			cakepen.moveTo(v.points[0][0], v.points[0][1]);
 			for (var i = 0; i < v.points.length; i++) cakepen.lineTo(v.points[i][0], v.points[i][1]);
