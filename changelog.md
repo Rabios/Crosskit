@@ -1,6 +1,12 @@
 # Changelog
 > NOTES: Crosskit Will Remain Backward Compatible,Open Source,And Free,Forever...
 
+## 20/April/2020
+Version 0.8.8
+
+### Improvements
+Letting Images Not To Drawn Directly,Letting Them Draw After Their Loading Event
+
 ## 16/April/2020
 Version 0.8.7
 

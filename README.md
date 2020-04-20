@@ -33,7 +33,7 @@ crosskit.rect({
 And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Renderers Then It Will Be The Same Appears With Some Minor Change If It Found
 
 ## Features
-- Lightweight And Simple With Size Of 70kb (Smaller Than [Two.js](https://two.js.org) And [Hilo](https://hiloteam.github.io))
+- Lightweight And Simple With Size Of 75kb (Smaller Than [Two.js](https://two.js.org) And [Hilo](https://hiloteam.github.io))
 - Minimifed Version In Size Of 40kb
 - 4 Rendering Modes: CANVAS,WEBGL,SVG,DOM
 - Easy And Fast To Switch Between Modes
