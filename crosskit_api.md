@@ -213,4 +213,4 @@ options.a                         //Alpha
 ```
 ## Notes
 1. Images Are Drawn Black In WEBGL Renderer Due To Issue,It Will Be Fixed Very Soon In Short Time
-2. Drawing Circles Can Cause At Sometimes Low Performance(At Startup Only)
+2. In WebGL Mode(WEBGL Renderer),Drawing Circles And Texts Can Cause At Sometimes Low Performance(At Startup Only)
