@@ -1,26 +1,26 @@
 # Crosskit
-Rendering Engine That Renders Graphics In CanvasRenderingContext2D,WebGLRenderingContext,SVG,And DOM
+Rendering engine that can renders graphics in CanvasRenderingContext2D,WebGLRenderingContext,SVG,DOM
 
 <div align="center">
     <img src="crosskit_logo_new.png" width="500" height="500">
 </div>
 
-## Renderers(Rendering Modes)
-1. `CANVAS`,Runs On `CanvasRenderingContext2D`
-2. `WEBGL`,Runs On `WebGLRenderingContext`
-3. `SVG`,Runs On SVG That Uses XML
-4. `DOM`, Runs On Document Elements So It Creates `<div>` Elements With CSS Style 
+## Renderers(Rendering modes)
+1. `CANVAS`,Runs on `CanvasRenderingContext2D`
+2. `WEBGL`,Runs on `WebGLRenderingContext`
+3. `SVG`,Runs on SVG that uses XML
+4. `DOM`, Runs on document elements so it creates `<div>` elements with CSS style 
 
-## Basic Usage
-Initializes Crosskit And Creates A View
+## Basic usage
+Initializes Crosskit and creates a view
 ```javascript
 crosskit.init({
     width: 600,
     height: 600,
-    renderer: SVG //Can Be Changed To DOM,CANVAS,WEBGL
+    renderer: SVG //Can changed to DOM,CANVAS,WEBGL
 });
 
-//Then Draw A Rectangle
+//Then draw a rectangle
 crosskit.rect({
     x: 100,
     y: 100,
@@ -30,28 +30,28 @@ crosskit.rect({
     stroke: "black"
 });
 ```
-And If You Changed Renderer In renderer Parameter To Any Of The 4 Graphics Renderers Then It Will Be The Same Appears With Some Minor Change If It Found
+if you changed renderer in renderer parameter to any of the 4 graphics renderers then it will be the same appears (With some minor changes if found)
 
 ## Features
-- Lightweight And Simple With Size Of 75kb (Smaller Than [Two.js](https://two.js.org) And [Hilo](https://hiloteam.github.io))
-- Minimifed Version In Size Of 40kb
-- 4 Rendering Modes: CANVAS,WEBGL,SVG,DOM
-- Easy And Fast To Switch Between Modes
-- Same Code And Same Base Without Changes When Changing Modes
-- Easy To Extend And Mod
-- Easy To Create Animations And Updates In Code,So Developing Games,Creating Sketches And Animations With It Is Simple
-- Great Performance With Backward Compatibility For It's Oldest Versions
-- Works In All Weak Browsers,Even Internet Explorer Versions 10,11,12
-- Developed With Care,All It's Functions Tested In Each Renderer
-- Portable And Easy To Setup Everywhere,No Dependencies,No Additions Needed
+- Lightweight and simple with size of 75kb (Smaller than [Two.js](https://two.js.org) and [Hilo](https://hiloteam.github.io))
+- Minimifed version in size of 40kb
+- 4 Renderers: CANVAS,WEBGL,SVG,DOM
+- Easy,Fast to switch between renderers
+- Same code,Same Base without changes when switching between renderers
+- Easy to mod and extend
+- Easy to create animations and updates in code,Developing games,And even creating sketches and animations as it's simple
+- Great performance with backward compatibility for it's oldest versions
+- Works in all weak browsers,even who doesn't support ES6
+- Developed with care,All functions tested in each renderer
+- Portable and easy to setup everywhere,Zero dependency,no additions needed to install
 
 ## Special Thanks
-1. [Corban Brook](http://twitter.com/corban),[Bobby Richter](http://twitter.com/secretrobotron),And [Charles J. Cliffe](http://twitter.com/ccliffe) At Game Closure For Developing [WebGL-2D](https://github.com/gameclosure/webgl-2d)
-2. [Youn Lok](https://github.com/younlok),For Supporting Me By Cheering Me While Developing Crosskit
-3. Everyone Used Crosskit,And Everyone Contributed To It,And Supported It's Development
+1. [Corban Brook](http://twitter.com/corban),[Bobby Richter](http://twitter.com/secretrobotron),And [Charles J. Cliffe](http://twitter.com/ccliffe) At Game Closure for developing [WebGL-2D](https://github.com/gameclosure/webgl-2d)
+2. [Youn Lok](https://github.com/younlok),For supporting and cheering me while developing Crosskit
+3. Everyone used Crosskit,And everyone contributed to it,And supported it's development
 
 ## More
-1. [Getting Started With Crosskit](https://github.com/Rabios/Crosskit/blob/master/getting_started.md)
-2. [API Functions Reference](https://github.com/Rabios/Crosskit/blob/master/crosskit_api.md)
-3. [Changelog And Updates History](https://github.com/Rabios/Crosskit/blob/master/changelog.md)	
-4. [Controlling Shapes Drawn By Crosskit Renderers](https://github.com/Rabios/Crosskit/blob/master/controlling_shapes_directly.md)
+1. [Getting started with Crosskit](https://github.com/Rabios/Crosskit/blob/master/getting_started.md)
+2. [API Reference](https://github.com/Rabios/Crosskit/blob/master/crosskit_api.md)
+3. [Changelog](https://github.com/Rabios/Crosskit/blob/master/changelog.md)	
+4. [Controlling shapes drawn by Crosskit renderers](https://github.com/Rabios/Crosskit/blob/master/controlling_shapes_directly.md)
